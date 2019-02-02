@@ -11,11 +11,11 @@ source("funciones_LAE.R")
 #------------------------------------------------
 
 #Umbral con el minimo####
-valDataPaths <- list.files("Resultados_Plantas/pa/",pattern = "*.csv$", full.names = T)
+valDataPaths <- list.files("C:/Proyectos/Wolke/Nuevo/Resultados_plantas_VaraiablesBaja/pa/",pattern = "*.csv$", full.names = T)
 valDataPaths
 valDataList <- lapply(valDataPaths, function(x) read.csv(x,header=T))
 # Path de la carpeta con los binaris de los modelos 
-rasterBinaryPaths <- list.files("C:/Proyectos/Wolke/Resultados_Plantas", pattern = "_min_", full.names = T, recursive = T)
+rasterBinaryPaths <- list.files("C:/Proyectos/Wolke/Nuevo/Resultados_plantas_VaraiablesBaja", pattern = "_min_", full.names = T, recursive = T)
 rasterBinaryPaths
 rasterBinayList <- lapply(rasterBinaryPaths, function(x) raster(x))
 x<-rasterBinayList[[1]]
@@ -24,7 +24,7 @@ names(x)
 j
 # Correr la funcion 
 
-Modelos<-list.files("C:/Proyectos/Wolke/Resultados_Plantas", pattern = "_min_", full.names = T, recursive = T)
+#Modelos<-list.files("C:/Proyectos/Wolke/Nuevo/Resultados_plantas_VaraiablesBaja", pattern = "_min_", full.names = T, recursive = T)
 
 allMetrics <-  lapply(1:length(rasterBinaryPaths), function(x){
 
@@ -42,13 +42,13 @@ allMetrics <-  lapply(1:length(rasterBinaryPaths), function(x){
 
 allMetricsDF <- do.call("rbind.data.frame",allMetrics)
 # Escribir los resultados
-write.csv(allMetricsDF,file = "Resultados_Plantas/AllMetrics_min.csv",row.names = F)
+write.csv(allMetricsDF,file = "C:/Proyectos/Wolke/Nuevo/Resultados_plantas_VaraiablesBaja/AllMetrics_min.csv",row.names = F)
 
-rm(allMetricsDF,Modelos)
+rm(allMetricsDF)
 
 #Umbral con el q10####
 # Path de la carpeta con los binaris de los modelos 
-rasterBinaryPaths <- list.files("C:/Proyectos/Wolke/Resultados_Plantas", pattern = "_q10_", full.names = T, recursive = T)
+rasterBinaryPaths <- list.files("C:/Proyectos/Wolke/Nuevo/Resultados_plantas_VaraiablesBaja", pattern = "_q10_", full.names = T, recursive = T)
 rasterBinaryPaths
 rasterBinayList <- lapply(rasterBinaryPaths, function(x) raster(x))
 x<-rasterBinayList[[1]]
@@ -56,7 +56,7 @@ j<-valDataPaths[[1]]
 names(x)
 j
 
-Modelos<-list.files("C:/Proyectos/Wolke/Resultados_Plantas", pattern = "_q10_", full.names = T, recursive = T)
+#Modelos<-list.files("C:/Proyectos/Wolke/Nuevo/Resultados_plantas_VaraiablesBaja", pattern = "_q10_", full.names = T, recursive = T)
 
 # Correr la funcion 
 allMetrics <-  lapply(1:length(rasterBinaryPaths), function(x){
@@ -75,5 +75,5 @@ allMetrics <-  lapply(1:length(rasterBinaryPaths), function(x){
 
 allMetricsDF <- do.call("rbind.data.frame",allMetrics)
 # Escribir los resultados
-write.csv(allMetricsDF,file = "Resultados_Plantas/AllMetrics_q10.csv",row.names = F)
+write.csv(allMetricsDF,file = "C:/Proyectos/Wolke/Nuevo/Resultados_plantas_VaraiablesBaja/AllMetrics_q10.csv",row.names = F)
 
