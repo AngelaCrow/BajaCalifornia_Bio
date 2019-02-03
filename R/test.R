@@ -2,8 +2,10 @@ library(ROCR)
 library(stringr)
 library(raster)
 
-setwd("C:/Proyectos/Wolke/Nuevo/Resultados_plantas_VaraiablesBaja")
+#setwd("C:/Proyectos/Wolke/Nuevo/Resultados_plantas_VaraiablesBaja")
+setwd("~/Documents/Wolke/Nuevo/Resultados_Mamiferos_VaraiablesBaja")
 dir.create("pa")
+
 p_files <- list.files(pattern="*_Validacion.csv$",
                       full.names = TRUE,  recursive = T)
 p_files
