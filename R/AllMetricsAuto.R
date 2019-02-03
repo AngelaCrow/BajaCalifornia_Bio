@@ -12,11 +12,11 @@ source("funciones_LAE.R")
 #------------------------------------------------
 
 #Umbral con el minimo####
-valDataPaths <- list.files("~/Documents/Wolke/Nuevo/Resultados_Mamiferos_VaraiablesBaja/pa/",pattern = "*.csv$", full.names = T)
+valDataPaths <- list.files("~/Documents/Wolke/Nuevo/Resultados_Herpeto_VaraiablesBaja/pa/",pattern = "*.csv$", full.names = T)
 valDataPaths
 valDataList <- lapply(valDataPaths, function(x) read.csv(x,header=T))
 # Path de la carpeta con los binaris de los modelos 
-rasterBinaryPaths <- list.files("~/Documents/Wolke/Nuevo/Resultados_Mamiferos_VaraiablesBaja", pattern = "_min_", full.names = T, recursive = T)
+rasterBinaryPaths <- list.files("~/Documents/Wolke/Nuevo/Resultados_Herpeto_VaraiablesBaja", pattern = "_min_", full.names = T, recursive = T)
 rasterBinaryPaths
 rasterBinayList <- lapply(rasterBinaryPaths, function(x) raster(x))
 x<-rasterBinayList[[1]]
@@ -43,13 +43,13 @@ allMetrics <-  lapply(1:length(rasterBinaryPaths), function(x){
 
 allMetricsDF <- do.call("rbind.data.frame",allMetrics)
 # Escribir los resultados
-write.csv(allMetricsDF,file = "~/Documents/Wolke/Nuevo/Resultados_Mamiferos_VaraiablesBaja/AllMetrics_min.csv",row.names = F)
+write.csv(allMetricsDF,file = "~/Documents/Wolke/Nuevo/Resultados_Herpeto_VaraiablesBaja/AllMetrics_min.csv",row.names = F)
 
 rm(allMetricsDF)
 
 #Umbral con el q10####
 # Path de la carpeta con los binaris de los modelos 
-rasterBinaryPaths <- list.files("~/Documents/Wolke/Nuevo/Resultados_Mamiferos_VaraiablesBaja", pattern = "_q10_", full.names = T, recursive = T)
+rasterBinaryPaths <- list.files("~/Documents/Wolke/Nuevo/Resultados_Herpeto_VaraiablesBaja", pattern = "_q10_", full.names = T, recursive = T)
 rasterBinaryPaths
 rasterBinayList <- lapply(rasterBinaryPaths, function(x) raster(x))
 x<-rasterBinayList[[1]]
@@ -76,5 +76,5 @@ allMetrics <-  lapply(1:length(rasterBinaryPaths), function(x){
 
 allMetricsDF <- do.call("rbind.data.frame",allMetrics)
 # Escribir los resultados
-write.csv(allMetricsDF,file = "~/Documents/Wolke/Nuevo/Resultados_Mamiferos_VaraiablesBaja/AllMetrics_q10.csv",row.names = F)
+write.csv(allMetricsDF,file = "~/Documents/Wolke/Nuevo/Resultados_Herpeto_VaraiablesBaja/AllMetrics_q10.csv",row.names = F)
 
