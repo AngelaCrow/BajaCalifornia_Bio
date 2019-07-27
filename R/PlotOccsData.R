@@ -1,21 +1,22 @@
 library("raster")
-library("rgdal", quietly = TRUE)
-library("magrittr", quietly = TRUE)
-library("readr", quietly = TRUE)
-library("dplyr", quietly = TRUE)
+library("rgdal" )
+library("magrittr")
+library("readr")
+library("dplyr")
 
-setwd("C:/Proyectos/Wolke/BajaCalifornia_Bio/Botany/data_species/")
-outputFolder <- 'C:/Proyectos/Wolke/BajaCalifornia_Bio/Botany/SinDups_dataSpecies'
-output_lentgth<-"C:/Proyectos/Wolke/BajaCalifornia_Bio/Botany/length"
+setwd("C:/Proyectos/Wolke/Master_botany_all_Angela/")
+
+outputFolder <- 'C:/Proyectos/Wolke/Master_botany_all_Angela/SinDups_dataSpecies'
+output_lentgth<-"C:/Proyectos/Wolke/Master_botany_all_Angela/length"
 mask<-raster("C:/Proyectos/Wolke/BajaCalifornia_Bio/mask.tif")
-sp_list<-list.files("C:/Proyectos/Wolke/BajaCalifornia_Bio/Botany/data_species/", 
+sp_list<-list.files("C:/Proyectos/Wolke/Master_botany_all_Angela/", 
                     pattern = ".csv$*")
 
-#x<-sp_list[6]
+x<-sp_list[6]
 
 plots_sps<-lapply(sp_list, function(x){
   crs.wgs84 <- sp::CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
-  occsData <- readr::read_csv(x)
+  occsData <- readr::read_csv(x) %>% na.omit()
   sp::coordinates(occsData) <- c("Longitude", "Latitude")
   sp::proj4string(occsData) <- crs.wgs84
   occsData <- sp::remove.duplicates(occsData, zero=0.00833333333)
